@@ -1,0 +1,77 @@
+SQL CODE
+
+*********************************************************
+SELECT
+    YEAR(CreationDate) as Year,
+    MONTH(CreationDate) as Month,
+    COUNT(CreationDate) as Count
+FROM Posts
+WHERE Tags LIKE '<iphone>'
+GROUP BY MONTH(CreationDate), YEAR(CreationDate)
+ORDER BY YEAR(CreationDate) ASC, MONTH(CreationDate) ASC;
+
+
+*********************************************************
+-- Most popular tags in 2009
+-- http://data.stackexchange.com/wordpress/query/edit/417509
+
+select 
+       num.TagName as Tag,
+       row_number() over (order by rate.Rate desc) as YearRank,
+       rate.Rate as QuestionsInYear,
+       num.Num as QuestionsTotal
+
+from
+
+(select count(PostId) as Rate, TagName
+from
+  Tags, PostTags, Posts
+where Tags.Id = PostTags.TagId and Posts.Id = PostId
+and Posts.CreationDate < '2009-12-31'
+and Posts.CreationDate > '2009-01-01'
+group by TagName) as rate
+
+INNER JOIN
+
+(select count(PostId) as Num, TagName
+from
+  Tags, PostTags, Posts
+where Tags.Id = PostTags.TagId and Posts.Id = PostId
+group by TagName
+having count(PostId) > 800)
+as num ON rate.TagName = num.TagName
+order by rate.rate desc
+;
+
+**************************************************************
+-- Most popular tags in 2016
+-- http://data.stackexchange.com/wordpress/query/edit/417509
+
+select 
+       num.TagName as Tag,
+       row_number() over (order by rate.Rate desc) as YearRank,
+       rate.Rate as QuestionsInYear,
+       num.Num as QuestionsTotal
+
+from
+
+(select count(PostId) as Rate, TagName
+from
+  Tags, PostTags, Posts
+where Tags.Id = PostTags.TagId and Posts.Id = PostId
+and Posts.CreationDate < '2016-12-31'
+and Posts.CreationDate > '2016-01-01'
+group by TagName) as rate
+
+INNER JOIN
+
+(select count(PostId) as Num, TagName
+from
+  Tags, PostTags, Posts
+where Tags.Id = PostTags.TagId and Posts.Id = PostId
+group by TagName
+having count(PostId) > 800)
+as num ON rate.TagName = num.TagName
+order by rate.rate desc
+;
+
