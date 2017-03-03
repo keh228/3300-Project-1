@@ -4,6 +4,10 @@
 <link href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans" rel="stylesheet">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-time.v1.min.js"></script>
+<script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
 <script src="http://d3js.org/topojson.v2.min.js"></script>
 
@@ -17,7 +21,7 @@
 
 <p id="p1"> 
 	Total number of questions on Stack Overflow <br> <br>
-	<svg id="svg_numquestions" width="300" height="300">
+	<svg id="svg_numquestions" width="400" height="300">
 	</svg>
 </p><br><br>
 
@@ -26,6 +30,7 @@
 	var maxMonthNum;
 	var maxCount;
 	var monthNumExtent;
+	var format;
 	var dataset = [];
 	var svg = d3.select("#svg_numquestions");
 
@@ -41,11 +46,12 @@
 	});
 
 	function update(dataset){
-		//console.log(monthNumExtent);
 		
-		var xScale = d3.scaleLinear()
-		.domain(monthNumExtent)
-		.range([30,270]);
+
+
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+
+
 
 		var xAxis = d3.axisBottom(xScale);
 		svg.append("g").attr("transform", "translate(0,270)").call(xAxis);
@@ -55,20 +61,13 @@
 		.range([270,30]);
 
 		var yAxis = d3.axisLeft(yScale);
-		svg.append("g").attr("transform","translate(30,0)").call(yAxis);
+		svg.append("g").attr("transform","translate(50,0)").call(yAxis);
 
-		// for (each in dataset){
-		// 	//console.log("hi");
 
-		// 	svg.append("circle")
-		// 	.attr("cx", xScale(dataset[each].MonthNum))
-		// 	.attr("cy", yScale(dataset[each].Count))
-		// 	.attr("r", 3);
-		// }
 
         var lineFunction = d3.line()
         .x(function (d) {
-            return xScale(d.MonthNum);
+            return xScale(new Date(d.Year, d.Month));
         })
         .y(function (d) {
             return yScale(d.Count);
