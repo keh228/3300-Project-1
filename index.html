@@ -544,10 +544,21 @@
 	            return yScale(d.python);
 	    });
 
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.python); });
+
         svg10.append("path")
 	        .attr("d", lineFunction(codeData))
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+
+	    svg10.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);
     });
 </script>
 
