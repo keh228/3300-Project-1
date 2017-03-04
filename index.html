@@ -133,11 +133,11 @@
 	var svg9 = d3.select("#svg_smallMultiples8");
 	var svg10 = d3.select("#svg_smallMultiples9");
 
-//#1 - ANDROID
-	d3.csv("top9data/android.csv", function(data) {
+	d3.csv("data.csv", function(data) {
+		//#1  - ANDROID
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.android; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -154,7 +154,6 @@
 			.attr("transform","translate(50,0)")
 			.call(yAxis);
 
-		svg2.append("circle")
 		svg2.append("g").attr("transform","translate(50,0)").call(yAxis);
 
 		var lineFunction = d3.line()
@@ -162,7 +161,7 @@
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.Tags);
+	            return yScale(d.android);
 	    });
 
         svg2.append("path")
@@ -170,13 +169,11 @@
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
-    });
 
-//#2 - ANGULAR JS
-	d3.csv("top9data/angularjs.csv", function(data) {
+	//#2 - ANGULAR JS
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.angularjs; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -201,7 +198,7 @@
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.Tags);
+	            return yScale(d.angularjs);
 	    });
 
         svg3.append("path")
@@ -209,13 +206,11 @@
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
-    });
 
-//#3 - C#
-    d3.csv("top9data/csharp.csv", function(data) {
+	//#3 - C#
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.Csharp; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -240,21 +235,19 @@
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.Tags);
+	            return yScale(d.Csharp);
 	    });
 
         svg4.append("path")
 	        .attr("d", lineFunction(codeData))
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
-	        .style("fill", "none");		
-    });
+	        .style("fill", "none");				
 
-//#4 - CSS
-    d3.csv("top9data/css.csv", function(data) {
+	//#4 - CSS
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.css; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -279,7 +272,7 @@
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.Tags);
+	            return yScale(d.css);
 	    });
 
         svg5.append("path")
@@ -287,13 +280,11 @@
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
-    });
 
-//$5 - IOS
-    d3.csv("top9data/ios.csv", function(data) {
+	//$5 - IOS
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.ios; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -318,7 +309,7 @@
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.Tags);
+	            return yScale(d.ios);
 	    });
 
         svg6.append("path")
@@ -326,13 +317,11 @@
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
-    });
 
-//6 - IPHONE
-    d3.csv("top9data/iphone.csv", function(data) {
+	//6 - IPHONE
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.iphone; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -357,7 +346,7 @@
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.Tags);
+	            return yScale(d.iphone);
 	    });
 
         svg7.append("path")
@@ -365,13 +354,11 @@
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
-    });
 
-//7 - JAVA
-    d3.csv("top9data/java.csv", function(data) {
+	//7 - JAVA
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.java; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -396,7 +383,7 @@
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.Tags);
+	            return yScale(d.java);
 	    });
 
         svg8.append("path")
@@ -404,13 +391,11 @@
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
-    });
 
-//8 - JAVASCRIPT
-    d3.csv("top9data/javascript.csv", function(data) {
+	//8 - JAVASCRIPT
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.javascript; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -435,7 +420,7 @@
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.Tags);
+	            return yScale(d.javascript);
 	    });
 
         svg9.append("path")
@@ -443,13 +428,11 @@
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
-    });
 
-//9 - Python
-    d3.csv("top9data/javascript.csv", function(data) {
+	//9 - Python
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.python; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -474,7 +457,7 @@
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.Tags);
+	            return yScale(d.python);
 	    });
 
         svg10.append("path")
