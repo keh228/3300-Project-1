@@ -134,6 +134,12 @@
 	var svg10 = d3.select("#svg_smallMultiples9");
 
 	d3.csv("data.csv", function(data) {
+	//find largest tag for scale
+		var tagExtent;
+		for (i=0; i<10; i++) { 
+
+		};
+
 	//#1  - ANDROID
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
@@ -173,7 +179,7 @@
 	//#2 - ANGULAR JS
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.angularjs; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.angularjs; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -210,7 +216,7 @@
 	//#3 - CSS
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.css; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.css; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -247,7 +253,7 @@
 	//#4 - IOS
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.ios; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.ios; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -284,7 +290,7 @@
 	//#5 - IPHONE
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.iphone; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.iphone; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -321,7 +327,7 @@
 	//#6 - JAVA
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.java; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.java; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -358,7 +364,7 @@
 	//#7 - JAVASCRIPT
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.javascript; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.javascript; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -395,7 +401,7 @@
 	//#8 - PHP
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.php; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.php; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -432,7 +438,7 @@
 	//9 - PYTHON
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.python; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.python; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
