@@ -1,0 +1,12 @@
+#p2 {
+	display: block;
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#p2 svg {
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+}

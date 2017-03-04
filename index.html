@@ -10,6 +10,7 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
 	<script src="http://d3js.org/topojson.v2.min.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="styles.css">
 	<style>
 		body { font-family: 'Alegreya Sans', Calibri, sans-serif; }
 		svg { border: solid #ccc 2px; }
@@ -99,26 +100,38 @@
 	}	
 </script>
 
-<p id="p2"> 
+<!-- <p id="p2"> 
 	Android <br> <br>
-	<svg id="svg_smallMultiples1" width="400" height="300"></svg>
+	<svg id="svg_smallMultiples1" width="250" height="200"></svg>
 	<br> AngularJS <br> <br>
-	<svg id="svg_smallMultiples2" width="400" height="300"></svg>
+	<svg id="svg_smallMultiples2" width="250" height="200"></svg>
 	<br> CSS<br> <br>
-	<svg id="svg_smallMultiples3" width="400" height="300"></svg>
+	<svg id="svg_smallMultiples3" width="250" height="200"></svg>
 	<br> iOS<br> <br>
-	<svg id="svg_smallMultiples4" width="400" height="300"></svg>
+	<svg id="svg_smallMultiples4" width="250" height="200"></svg>
 	<br> iPhone<br> <br>
-	<svg id="svg_smallMultiples5" width="400" height="300"></svg>
+	<svg id="svg_smallMultiples5" width="250" height="200"></svg>
 	<br> Java<br> <br>
-	<svg id="svg_smallMultiples6" width="400" height="300"></svg>
+	<svg id="svg_smallMultiples6" width="250" height="200"></svg>
 	<br> JavaScript<br> <br>
-	<svg id="svg_smallMultiples7" width="400" height="300"></svg>
+	<svg id="svg_smallMultiples7" width="250" height="200"></svg>
 	<br> PHP <br> <br>
-	<svg id="svg_smallMultiples8" width="400" height="300"></svg>
+	<svg id="svg_smallMultiples8" width="250" height="200"></svg>
 	<br> Python <br> <br>
-	<svg id="svg_smallMultiples9" width="400" height="300"></svg>
-</p><br><br>
+	<svg id="svg_smallMultiples9" width="250" height="200"></svg>
+</p><br><br> -->
+
+<div id="#p2">
+	<svg id="svg_smallMultiples1" width="250" height="200"></svg>
+	<svg id="svg_smallMultiples2" width="250" height="200"></svg>
+	<svg id="svg_smallMultiples3" width="250" height="200"></svg>
+	<svg id="svg_smallMultiples4" width="250" height="200"></svg>
+	<svg id="svg_smallMultiples5" width="250" height="200"></svg>
+	<svg id="svg_smallMultiples6" width="250" height="200"></svg>
+	<svg id="svg_smallMultiples7" width="250" height="200"></svg>
+	<svg id="svg_smallMultiples8" width="250" height="200"></svg>
+	<svg id="svg_smallMultiples9" width="250" height="200"></svg>
+</div>
 
 <script>
 	var monthNumExtent;
@@ -134,33 +147,43 @@
 	var svg10 = d3.select("#svg_smallMultiples9");
 
 	d3.csv("data.csv", function(data) {
+	
 	//find largest tag for scale
 		var tagExtent;
 		for (i=0; i<10; i++) { 
-
+			// temp = d3.extent(codeData, function(d) {return +d.android; });
+			console.log("hi");
 		};
 
-	//#1  - ANDROID
+	//#1 - ANDROID
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
 		tagExtent = d3.extent(codeData, function(d) {return +d.android; });
 		
-		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
 		svg2.append("g")
 			.attr("class", "axis")
-			.attr("transform", "translate(0,270)")
-			.style("font-size", "10px")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
 			.call(xAxis);
 
-		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
 		var yAxis = d3.axisLeft(yScale);
 		svg2.append("g")
 			.attr("class", "axis")
-			.attr("transform","translate(50,0)")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			//change ticks
 			.call(yAxis);
 
-		svg2.append("g").attr("transform","translate(50,0)").call(yAxis);
+		svg2.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("Android");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
@@ -181,23 +204,29 @@
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
 		// tagExtent = d3.extent(codeData, function(d) {return +d.angularjs; });
 		
-		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
 		svg3.append("g")
 			.attr("class", "axis")
-			.attr("transform", "translate(0,270)")
-			.style("font-size", "10px")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
 			.call(xAxis);
 
-		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
 		var yAxis = d3.axisLeft(yScale);
 		svg3.append("g")
 			.attr("class", "axis")
-			.attr("transform","translate(50,0)")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
 			.call(yAxis);
 
-		svg3.append("circle")
-		svg3.append("g").attr("transform","translate(50,0)").call(yAxis);
+		svg3.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("AngularJS");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
@@ -218,23 +247,30 @@
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
 		// tagExtent = d3.extent(codeData, function(d) {return +d.css; });
 		
-		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
 		svg4.append("g")
 			.attr("class", "axis")
-			.attr("transform", "translate(0,270)")
-			.style("font-size", "10px")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
 			.call(xAxis);
 
-		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
 		var yAxis = d3.axisLeft(yScale);
 		svg4.append("g")
 			.attr("class", "axis")
-			.attr("transform","translate(50,0)")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			//change ticks
 			.call(yAxis);
 
-		svg4.append("circle")
-		svg4.append("g").attr("transform","translate(50,0)").call(yAxis);
+		svg4.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("CSS");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
@@ -255,23 +291,30 @@
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
 		// tagExtent = d3.extent(codeData, function(d) {return +d.ios; });
 		
-		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
 		svg5.append("g")
 			.attr("class", "axis")
-			.attr("transform", "translate(0,270)")
-			.style("font-size", "10px")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
 			.call(xAxis);
 
-		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
 		var yAxis = d3.axisLeft(yScale);
 		svg5.append("g")
 			.attr("class", "axis")
-			.attr("transform","translate(50,0)")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			//change ticks
 			.call(yAxis);
 
-		svg5.append("circle")
-		svg5.append("g").attr("transform","translate(50,0)").call(yAxis);
+		svg5.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("iOS");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
@@ -292,23 +335,30 @@
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
 		// tagExtent = d3.extent(codeData, function(d) {return +d.iphone; });
 		
-		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
 		svg6.append("g")
 			.attr("class", "axis")
-			.attr("transform", "translate(0,270)")
-			.style("font-size", "10px")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
 			.call(xAxis);
 
-		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
 		var yAxis = d3.axisLeft(yScale);
 		svg6.append("g")
 			.attr("class", "axis")
-			.attr("transform","translate(50,0)")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			//change ticks
 			.call(yAxis);
 
-		svg6.append("circle")
-		svg6.append("g").attr("transform","translate(50,0)").call(yAxis);
+		svg6.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("iPhone");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
@@ -329,23 +379,30 @@
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
 		// tagExtent = d3.extent(codeData, function(d) {return +d.java; });
 		
-		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
 		svg7.append("g")
 			.attr("class", "axis")
-			.attr("transform", "translate(0,270)")
-			.style("font-size", "10px")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
 			.call(xAxis);
 
-		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
 		var yAxis = d3.axisLeft(yScale);
 		svg7.append("g")
 			.attr("class", "axis")
-			.attr("transform","translate(50,0)")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			//change ticks
 			.call(yAxis);
 
-		svg7.append("circle")
-		svg7.append("g").attr("transform","translate(50,0)").call(yAxis);
+		svg7.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("Java");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
@@ -366,23 +423,30 @@
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
 		// tagExtent = d3.extent(codeData, function(d) {return +d.javascript; });
 		
-		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
 		svg8.append("g")
 			.attr("class", "axis")
-			.attr("transform", "translate(0,270)")
-			.style("font-size", "10px")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
 			.call(xAxis);
 
-		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
 		var yAxis = d3.axisLeft(yScale);
 		svg8.append("g")
 			.attr("class", "axis")
-			.attr("transform","translate(50,0)")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			//change ticks
 			.call(yAxis);
 
-		svg8.append("circle")
-		svg8.append("g").attr("transform","translate(50,0)").call(yAxis);
+		svg8.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("JavaScript");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
@@ -403,23 +467,30 @@
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
 		// tagExtent = d3.extent(codeData, function(d) {return +d.php; });
 		
-		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
 		svg9.append("g")
 			.attr("class", "axis")
-			.attr("transform", "translate(0,270)")
-			.style("font-size", "10px")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
 			.call(xAxis);
 
-		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
 		var yAxis = d3.axisLeft(yScale);
 		svg9.append("g")
 			.attr("class", "axis")
-			.attr("transform","translate(50,0)")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			//change ticks
 			.call(yAxis);
 
-		svg9.append("circle")
-		svg9.append("g").attr("transform","translate(50,0)").call(yAxis);
+		svg9.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("PHP");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
@@ -435,28 +506,35 @@
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");	
 
-	//9 - PYTHON
+	//#9 - PYTHON
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
 		// tagExtent = d3.extent(codeData, function(d) {return +d.python; });
 		
-		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
 		svg10.append("g")
 			.attr("class", "axis")
-			.attr("transform", "translate(0,270)")
-			.style("font-size", "10px")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
 			.call(xAxis);
 
-		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
 		var yAxis = d3.axisLeft(yScale);
 		svg10.append("g")
 			.attr("class", "axis")
-			.attr("transform","translate(50,0)")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			//change ticks
 			.call(yAxis);
 
-		svg10.append("circle")
-		svg10.append("g").attr("transform","translate(50,0)").call(yAxis);
+		svg10.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("Python");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
@@ -470,7 +548,6 @@
 	        .attr("d", lineFunction(codeData))
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
-	        .style("fill", "none");		
     });
 </script>
 
