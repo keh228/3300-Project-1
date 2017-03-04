@@ -1,36 +1,33 @@
 <html>
 <head>
-<title>INFO 3300 - Project 1</title>
-<link href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans" rel="stylesheet">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="https://d3js.org/d3-time.v1.min.js"></script>
-<script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+	<title>INFO 3300 - Project 1</title>
+	<link href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://d3js.org/d3-time.v1.min.js"></script>
+	<script src="https://d3js.org/d3-time-format.v2.min.js"></script>
 
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+	<script src="http://d3js.org/topojson.v2.min.js"></script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
-<script src="http://d3js.org/topojson.v2.min.js"></script>
-
-<style>
-	body { font-family: 'Alegreya Sans', Calibri, sans-serif; }
-	svg { border: solid #ccc 2px; }
-	svg text {
-		fill: #BCBBBB;
-	}
-	.axis line{
-		stroke: #BCBBBB;
-	}
-	.axis path{
-		stroke: #BCBBBB;
-	}
-
-</style>
+	<style>
+		body { font-family: 'Alegreya Sans', Calibri, sans-serif; }
+		svg { border: solid #ccc 2px; }
+		svg text {
+			fill: #BCBBBB;
+		}
+		.axis line{
+			stroke: #BCBBBB;
+		}
+		.axis path{
+			stroke: #BCBBBB;
+		}
+	</style>
 </head>
 <body>
 <!--  Orange - #F48024  -->
 <!--  Blue - #0077CC  -->
 <!--  Grey - #BCBBBB  -->
-
 
 <p id="p1"> 
 	Total number of questions on Stack Overflow <br> <br>
@@ -103,17 +100,24 @@
 </script>
 
 <p id="p2"> 
-	Javascript <br> <br>
-	<svg id="svg_smallMultiples1" width="400" height="300">
-	<svg id="svg_smallMultiples2" width="400" height="300">
-	<svg id="svg_smallMultiples3" width="400" height="300">
-	<svg id="svg_smallMultiples4" width="400" height="300">
-	<svg id="svg_smallMultiples5" width="400" height="300">
-	<svg id="svg_smallMultiples6" width="400" height="300">
-	<svg id="svg_smallMultiples7" width="400" height="300">
-	<svg id="svg_smallMultiples8" width="400" height="300">
-	<svg id="svg_smallMultiples9" width="400" height="300">
-	</svg>
+	Android <br> <br>
+	<svg id="svg_smallMultiples1" width="400" height="300"></svg>
+	<br> AngularJS <br> <br>
+	<svg id="svg_smallMultiples2" width="400" height="300"></svg>
+	<br> C# <br> <br>
+	<svg id="svg_smallMultiples3" width="400" height="300"></svg>
+	<br> iOS <br> <br>
+	<svg id="svg_smallMultiples4" width="400" height="300"></svg>
+	<br> CSS <br> <br>
+	<svg id="svg_smallMultiples5" width="400" height="300"></svg>
+	<br> iPhone <br> <br>
+	<svg id="svg_smallMultiples6" width="400" height="300"></svg>
+	<br> Java <br> <br>
+	<svg id="svg_smallMultiples7" width="400" height="300"></svg>
+	<br> JavaScript <br> <br>
+	<svg id="svg_smallMultiples8" width="400" height="300"></svg>
+	<br> Python <br> <br>
+	<svg id="svg_smallMultiples9" width="400" height="300"></svg>
 </p><br><br>
 
 <script>
@@ -129,7 +133,8 @@
 	var svg9 = d3.select("#svg_smallMultiples8");
 	var svg10 = d3.select("#svg_smallMultiples9");
 
-	d3.csv("top9data/javascript.csv", function(data) {
+//#1 - ANDROID
+	d3.csv("top9data/android.csv", function(data) {
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
 		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
@@ -167,45 +172,317 @@
 	        .style("fill", "none");		
     });
 
-//Me trying to recreate the graphs
-
-  //   d3.csv("top9data/css.csv", function(data) {
-		// codeData = data;
-		// monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+//#2 - ANGULAR JS
+	d3.csv("top9data/angularjs.csv", function(data) {
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
 		
-		// var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
-		// var xAxis = d3.axisBottom(xScale);
-		// svg3.append("g")
-		// 	.attr("class", "axis")
-		// 	.attr("transform", "translate(0,270)")
-		// 	.style("font-size", "10px")
-		// 	.call(xAxis);
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xAxis = d3.axisBottom(xScale);
+		svg3.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,270)")
+			.style("font-size", "10px")
+			.call(xAxis);
 
-		// var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
-		// var yAxis = d3.axisLeft(yScale);
-		// svg3.append("g")
-		// 	.attr("class", "axis")
-		// 	.attr("transform","translate(50,0)")
-		// 	.call(yAxis);
+		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg3.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(50,0)")
+			.call(yAxis);
 
-		// svg3.append("circle")
-		// svg3.append("g").attr("transform","translate(50,0)").call(yAxis);
+		svg3.append("circle")
+		svg3.append("g").attr("transform","translate(50,0)").call(yAxis);
 
-		// var lineFunction = d3.line()
-  //       	.x(function (d) {
-	 //            return xScale(new Date(d.Year, d.Month));
-	 //        })
-	 //        .y(function (d) {
-	 //            return yScale(d.Tags);
-	 //    });
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.Tags);
+	    });
 
-  //       svg3.append("path")
-	 //        .attr("d", lineFunction(codeData))
-	 //        .style("stroke-width", 2)
-	 //        .style("stroke", "#F48024")
-	 //        .style("fill", "none");		
-  //   });
+        svg3.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+    });
+
+//#3 - C#
+    d3.csv("top9data/csharp.csv", function(data) {
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xAxis = d3.axisBottom(xScale);
+		svg4.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,270)")
+			.style("font-size", "10px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg4.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(50,0)")
+			.call(yAxis);
+
+		svg4.append("circle")
+		svg4.append("g").attr("transform","translate(50,0)").call(yAxis);
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.Tags);
+	    });
+
+        svg4.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+    });
+
+//#4 - CSS
+    d3.csv("top9data/css.csv", function(data) {
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xAxis = d3.axisBottom(xScale);
+		svg5.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,270)")
+			.style("font-size", "10px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg5.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(50,0)")
+			.call(yAxis);
+
+		svg5.append("circle")
+		svg5.append("g").attr("transform","translate(50,0)").call(yAxis);
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.Tags);
+	    });
+
+        svg5.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+    });
+
+//$5 - IOS
+    d3.csv("top9data/ios.csv", function(data) {
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xAxis = d3.axisBottom(xScale);
+		svg6.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,270)")
+			.style("font-size", "10px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg6.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(50,0)")
+			.call(yAxis);
+
+		svg6.append("circle")
+		svg6.append("g").attr("transform","translate(50,0)").call(yAxis);
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.Tags);
+	    });
+
+        svg6.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+    });
+
+//6 - IPHONE
+    d3.csv("top9data/iphone.csv", function(data) {
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xAxis = d3.axisBottom(xScale);
+		svg7.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,270)")
+			.style("font-size", "10px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg7.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(50,0)")
+			.call(yAxis);
+
+		svg7.append("circle")
+		svg7.append("g").attr("transform","translate(50,0)").call(yAxis);
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.Tags);
+	    });
+
+        svg7.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+    });
+
+//7 - JAVA
+    d3.csv("top9data/java.csv", function(data) {
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xAxis = d3.axisBottom(xScale);
+		svg8.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,270)")
+			.style("font-size", "10px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg8.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(50,0)")
+			.call(yAxis);
+
+		svg8.append("circle")
+		svg8.append("g").attr("transform","translate(50,0)").call(yAxis);
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.Tags);
+	    });
+
+        svg8.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+    });
+
+//8 - JAVASCRIPT
+    d3.csv("top9data/javascript.csv", function(data) {
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xAxis = d3.axisBottom(xScale);
+		svg9.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,270)")
+			.style("font-size", "10px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg9.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(50,0)")
+			.call(yAxis);
+
+		svg9.append("circle")
+		svg9.append("g").attr("transform","translate(50,0)").call(yAxis);
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.Tags);
+	    });
+
+        svg9.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+    });
+
+//9 - Python
+    d3.csv("top9data/javascript.csv", function(data) {
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var xAxis = d3.axisBottom(xScale);
+		svg10.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,270)")
+			.style("font-size", "10px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg10.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(50,0)")
+			.call(yAxis);
+
+		svg10.append("circle")
+		svg10.append("g").attr("transform","translate(50,0)").call(yAxis);
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.Tags);
+	    });
+
+        svg10.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+    });
 </script>
 
 </body>
