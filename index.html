@@ -14,10 +14,23 @@
 <style>
 	body { font-family: 'Alegreya Sans', Calibri, sans-serif; }
 	svg { border: solid #ccc 2px; }
+	svg text {
+		fill: #BCBBBB;
+	}
+	.axis line{
+		stroke: #BCBBBB;
+	}
+	.axis path{
+		stroke: #BCBBBB;
+	}
 
 </style>
 </head>
 <body>
+<!--  Orange - #F48024  -->
+<!--  Blue - #0077CC  -->
+<!--  Grey - #BCBBBB  -->
+
 
 <p id="p1"> 
 	Total number of questions on Stack Overflow <br> <br>
@@ -31,6 +44,7 @@
 	var maxCount;
 	var monthNumExtent;
 	var format;
+	var max;
 	var dataset = [];
 	var svg = d3.select("#svg_numquestions");
 
@@ -49,21 +63,30 @@
 		
 
 
-		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
-
-
+		var xScale = d3.scaleTime()
+			.domain([new Date("2008-07-01"), new Date("2017-01-29")])
+			.range([50, 370]);
 
 		var xAxis = d3.axisBottom(xScale);
-		svg.append("g").attr("transform", "translate(0,270)").call(xAxis);
+		svg.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,270)")
+			.style("font-size", "10px")
+			//.style("fill", "#BCBBBB")
+			.call(xAxis);
 
 		var yScale = d3.scaleLinear()
-		.domain(countExtent)
-		.range([270,30]);
+			.domain(countExtent)
+			.range([270,30]);
 
 		var yAxis = d3.axisLeft(yScale);
-		svg.append("g").attr("transform","translate(50,0)").call(yAxis);
+		svg.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(50,0)")
+			.call(yAxis);
 
-
+		svg.append("circle")
+			.attr()
 
         var lineFunction = d3.line()
         .x(function (d) {
@@ -76,7 +99,7 @@
         svg.append("path")
         .attr("d", lineFunction(dataset))
         .style("stroke-width", 2)
-        .style("stroke", "rgb(6,120,155)")
+        .style("stroke", "#F48024")
         .style("fill", "none");
         
 	}	
