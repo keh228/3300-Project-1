@@ -29,15 +29,21 @@
 <!--  Orange - #F48024  -->
 <!--  Blue - #0077CC  -->
 <!--  Grey - #BCBBBB  -->
+<div id="header">
+	<h1>Visualizing StackOverflow</h1>
+	<div id="names">
+		<h3>Eliot Huang, keh228</h3>
+		<h3>Harley Mueller, hrm58</h3>
+		<h3>Xu Lee, xl475</h3>
+	</div>
+</div>
 
-<p id="p1"> 
-	Total number of questions on Stack Overflow <br> <br>
-	<svg id="svg_numquestions" width="400" height="300">
-	</svg>
-</p><br><br>
+
+<div id="p1"> 
+	<svg id="svg_numquestions" width="400" height="300"></svg>
+</div>
 
 <script>
-
 	var maxMonthNum;
 	var maxCount;
 	var monthNumExtent;
@@ -81,8 +87,13 @@
 			.attr("transform","translate(50,0)")
 			.call(yAxis);
 
-		svg.append("circle")
-		svg.append("g").attr("transform","translate(50,0)").call(yAxis);
+		svg.append("text")
+	        .attr("x", (400 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("Total Number of Questions on StackOverflow");
 
         var lineFunction = d3.line()
         .x(function (d) {
@@ -92,36 +103,26 @@
             return yScale(d.Count);
         });
 
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(270)
+		    .y1(function(d) { return yScale(d.Count); 
+		});
+
         svg.append("path")
         .attr("d", lineFunction(dataset))
         .style("stroke-width", 2)
         .style("stroke", "#F48024")
         .style("fill", "none");
+
+	    svg.append("path")
+	         .data([dataset])
+	         .attr("class", "area")
+	         .attr("d", area);	
 	}	
 </script>
 
-<!-- <p id="p2"> 
-	Android <br> <br>
-	<svg id="svg_smallMultiples1" width="250" height="200"></svg>
-	<br> AngularJS <br> <br>
-	<svg id="svg_smallMultiples2" width="250" height="200"></svg>
-	<br> CSS<br> <br>
-	<svg id="svg_smallMultiples3" width="250" height="200"></svg>
-	<br> iOS<br> <br>
-	<svg id="svg_smallMultiples4" width="250" height="200"></svg>
-	<br> iPhone<br> <br>
-	<svg id="svg_smallMultiples5" width="250" height="200"></svg>
-	<br> Java<br> <br>
-	<svg id="svg_smallMultiples6" width="250" height="200"></svg>
-	<br> JavaScript<br> <br>
-	<svg id="svg_smallMultiples7" width="250" height="200"></svg>
-	<br> PHP <br> <br>
-	<svg id="svg_smallMultiples8" width="250" height="200"></svg>
-	<br> Python <br> <br>
-	<svg id="svg_smallMultiples9" width="250" height="200"></svg>
-</p><br><br> -->
-
-<div id="#p2">
+<div id="p2">
 	<svg id="svg_smallMultiples1" width="250" height="200"></svg>
 	<svg id="svg_smallMultiples2" width="250" height="200"></svg>
 	<svg id="svg_smallMultiples3" width="250" height="200"></svg>
@@ -146,7 +147,7 @@
 	var svg9 = d3.select("#svg_smallMultiples8");
 	var svg10 = d3.select("#svg_smallMultiples9");
 
-	d3.csv("data.csv", function(data) {
+	d3.csv("dataTop2016.csv", function(data) {
 	
 	//find largest tag for scale
 		var tagExtent;
@@ -174,7 +175,6 @@
 			.attr("class", "axis")
 			.attr("transform","translate(30,0)")
 			.style("font-size", "8px")
-			//change ticks
 			.call(yAxis);
 
 		svg2.append("text")
@@ -209,7 +209,7 @@
 	         .attr("class", "area")
 	         .attr("d", area);			
 
-	//#2 - ANGULAR JS
+	//#2 - C#
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
 		// tagExtent = d3.extent(codeData, function(d) {return +d.angularjs; });
@@ -236,20 +236,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("AngularJS");
+	        .text("C#");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.angularjs);
+	            return yScale(d.Csharp);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.angularjs); });
+		    .y1(function(d) { return yScale(d.Csharp); });
 
         svg3.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -262,7 +262,7 @@
 	         .attr("class", "area")
 	         .attr("d", area);					
 
-	//#3 - CSS
+	//#3 - HTML
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
 		// tagExtent = d3.extent(codeData, function(d) {return +d.css; });
@@ -290,20 +290,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("CSS");
+	        .text("HTML");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.css);
+	            return yScale(d.html);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.css); });
+		    .y1(function(d) { return yScale(d.html); });
 
         svg4.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -370,10 +370,10 @@
 	         .attr("class", "area")
 	         .attr("d", area);	
 
-	//#5 - IPHONE
+	//#5 - JAVA
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.iphone; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.java; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -398,20 +398,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("iPhone");
+	        .text("Java");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.iphone);
+	            return yScale(d.java);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.iphone); });
+		    .y1(function(d) { return yScale(d.java); });
 
         svg6.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -422,12 +422,12 @@
 	    svg6.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);
+	         .attr("d", area);	
 
-	//#6 - JAVA
+	//#6 - JAVASCRIPT
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.java; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.javascript; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -452,20 +452,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("Java");
+	        .text("JavaScript");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.java);
+	            return yScale(d.javascript);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.java); });
+		    .y1(function(d) { return yScale(d.javascript); });
 
         svg7.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -476,12 +476,12 @@
 	    svg7.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);	
+	         .attr("d", area);
 
-	//#7 - JAVASCRIPT
+	//#7 - JQUERY
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.javascript; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.iphone; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -506,20 +506,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("JavaScript");
+	        .text("jQuery");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.javascript);
+	            return yScale(d.jquery);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.javascript); });
+		    .y1(function(d) { return yScale(d.jquery); });
 
         svg8.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -636,6 +636,528 @@
 	        .style("fill", "none");		
 
 	    svg10.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);
+    });
+</script>
+
+<div id="p3">
+	<svg id="svg_smallMultiples10" width="250" height="200"></svg>
+	<svg id="svg_smallMultiples11" width="250" height="200"></svg>
+	<svg id="svg_smallMultiples12" width="250" height="200"></svg>
+	<svg id="svg_smallMultiples13" width="250" height="200"></svg>
+	<svg id="svg_smallMultiples14" width="250" height="200"></svg>
+	<svg id="svg_smallMultiples15" width="250" height="200"></svg>
+	<svg id="svg_smallMultiples16" width="250" height="200"></svg>
+	<svg id="svg_smallMultiples17" width="250" height="200"></svg>
+	<svg id="svg_smallMultiples18" width="250" height="200"></svg>
+</div>
+
+<script>
+	var monthNumExtent;
+	var codeData = [];
+	var svg11 = d3.select("#svg_smallMultiples10");
+	var svg12 = d3.select("#svg_smallMultiples11");
+	var svg13 = d3.select("#svg_smallMultiples12");
+	var svg14 = d3.select("#svg_smallMultiples13");
+	var svg15 = d3.select("#svg_smallMultiples14");
+	var svg16 = d3.select("#svg_smallMultiples15");
+	var svg17 = d3.select("#svg_smallMultiples16");
+	var svg18 = d3.select("#svg_smallMultiples17");
+	var svg19 = d3.select("#svg_smallMultiples18");
+
+	d3.csv("dataTop2009.csv", function(data) {
+	
+	//find largest tag for scale
+		var tagExtent;
+		for (i=0; i<10; i++) { 
+			// temp = d3.extent(codeData, function(d) {return +d.android; });
+			console.log("hi");
+		};
+
+	//#10 - ASP.NET
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+
+		//THIS NEEDS TO BE REWRITTEN TO HIGHEST SCALE
+		tagExtent = d3.extent(codeData, function(d) {return +d.java; });
+		
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
+		var xAxis = d3.axisBottom(xScale);
+		svg11.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg11.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			//change ticks
+			.call(yAxis);
+
+		svg11.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("asp.net");
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.aspnet);
+	    });
+
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.aspnet); });
+
+        svg11.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+
+	    svg11.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);			
+
+	//#11 - C++
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.angularjs; });
+		
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
+		var xAxis = d3.axisBottom(xScale);
+		svg12.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg12.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			.call(yAxis);
+
+		svg12.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("C++");
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.Cplusplus);
+	    });
+
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.Cplusplus); });
+
+        svg12.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+
+	    svg12.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);					
+
+	//#12 - C#
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.css; });
+		
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
+		var xAxis = d3.axisBottom(xScale);
+		svg13.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg13.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			//change ticks
+			.call(yAxis);
+
+		svg13.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("C#");
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.Csharp);
+	    });
+
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.Csharp); });
+
+        svg13.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+
+	    svg13.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);		
+
+	//#13 - iPhone
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.ios; });
+		
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
+		var xAxis = d3.axisBottom(xScale);
+		svg14.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg14.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			//change ticks
+			.call(yAxis);
+
+		svg14.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("iOS");
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.iphone);
+	    });
+
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.iphone); });
+
+        svg14.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+
+	    svg14.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);	
+
+	//#14 - JAVA
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.java; });
+		
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
+		var xAxis = d3.axisBottom(xScale);
+		svg15.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg15.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			.call(yAxis);
+
+		svg15.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("Java");
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.java);
+	    });
+
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.java); });
+
+        svg15.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+
+	    svg15.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);	
+
+	//#15 - JAVASCRIPT
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.javascript; });
+		
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
+		var xAxis = d3.axisBottom(xScale);
+		svg16.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg16.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			//change ticks
+			.call(yAxis);
+
+		svg16.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("JavaScript");
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.javascript);
+	    });
+
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.javascript); });
+
+        svg16.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+
+	    svg16.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);
+
+	//#16 - JQUERY
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.iphone; });
+		
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
+		var xAxis = d3.axisBottom(xScale);
+		svg17.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg17.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			//change ticks
+			.call(yAxis);
+
+		svg17.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("jQuery");
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.jquery);
+	    });
+
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.jquery); });
+
+        svg17.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+
+	    svg17.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);
+
+	//#17 - .NET
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.php; });
+		
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
+		var xAxis = d3.axisBottom(xScale);
+		svg18.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg18.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			//change ticks
+			.call(yAxis);
+
+		svg18.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text(".net");
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.net);
+	    });
+
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.net); });
+
+        svg18.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+
+	    svg18.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);
+
+	//#18 - PHP
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.python; });
+		
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
+		var xAxis = d3.axisBottom(xScale);
+		svg19.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,180)")
+			.style("font-size", "8px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
+		var yAxis = d3.axisLeft(yScale);
+		svg19.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(30,0)")
+			.style("font-size", "8px")
+			//change ticks
+			.call(yAxis);
+
+		svg19.append("text")
+	        .attr("x", (250 / 2))             
+	        .attr("y", 20)
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "16px") 
+	        .style("text-decoration", "underline")  
+	        .text("PHP");
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.php);
+	    });
+
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.php); });
+
+        svg19.append("path")
+	        .attr("d", lineFunction(codeData))
+	        .style("stroke-width", 2)
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+
+	    svg19.append("path")
 	         .data([data])
 	         .attr("class", "area")
 	         .attr("d", area);
