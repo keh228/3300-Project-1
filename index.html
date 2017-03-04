@@ -104,17 +104,17 @@
 	<svg id="svg_smallMultiples1" width="400" height="300"></svg>
 	<br> AngularJS <br> <br>
 	<svg id="svg_smallMultiples2" width="400" height="300"></svg>
-	<br> C# <br> <br>
+	<br> CSS<br> <br>
 	<svg id="svg_smallMultiples3" width="400" height="300"></svg>
-	<br> iOS <br> <br>
+	<br> iOS<br> <br>
 	<svg id="svg_smallMultiples4" width="400" height="300"></svg>
-	<br> CSS <br> <br>
+	<br> iPhone<br> <br>
 	<svg id="svg_smallMultiples5" width="400" height="300"></svg>
-	<br> iPhone <br> <br>
+	<br> Java<br> <br>
 	<svg id="svg_smallMultiples6" width="400" height="300"></svg>
-	<br> Java <br> <br>
+	<br> JavaScript<br> <br>
 	<svg id="svg_smallMultiples7" width="400" height="300"></svg>
-	<br> JavaScript <br> <br>
+	<br> PHP <br> <br>
 	<svg id="svg_smallMultiples8" width="400" height="300"></svg>
 	<br> Python <br> <br>
 	<svg id="svg_smallMultiples9" width="400" height="300"></svg>
@@ -134,7 +134,7 @@
 	var svg10 = d3.select("#svg_smallMultiples9");
 
 	d3.csv("data.csv", function(data) {
-		//#1  - ANDROID
+	//#1  - ANDROID
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
 		tagExtent = d3.extent(codeData, function(d) {return +d.android; });
@@ -205,12 +205,12 @@
 	        .attr("d", lineFunction(codeData))
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
-	        .style("fill", "none");		
+	        .style("fill", "none");					
 
-	//#3 - C#
+	//#3 - CSS
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.Csharp; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.css; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -235,19 +235,19 @@
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.Csharp);
+	            return yScale(d.css);
 	    });
 
         svg4.append("path")
 	        .attr("d", lineFunction(codeData))
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
-	        .style("fill", "none");				
+	        .style("fill", "none");		
 
-	//#4 - CSS
+	//#4 - IOS
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.css; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.ios; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -272,7 +272,7 @@
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.css);
+	            return yScale(d.ios);
 	    });
 
         svg5.append("path")
@@ -281,10 +281,10 @@
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
 
-	//$5 - IOS
+	//#5 - IPHONE
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.ios; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.iphone; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -309,7 +309,7 @@
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.ios);
+	            return yScale(d.iphone);
 	    });
 
         svg6.append("path")
@@ -318,10 +318,10 @@
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
 
-	//6 - IPHONE
+	//#6 - JAVA
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.iphone; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.java; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -346,7 +346,7 @@
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.iphone);
+	            return yScale(d.java);
 	    });
 
         svg7.append("path")
@@ -355,10 +355,10 @@
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
 
-	//7 - JAVA
+	//#7 - JAVASCRIPT
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.java; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.javascript; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -383,7 +383,7 @@
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.java);
+	            return yScale(d.javascript);
 	    });
 
         svg8.append("path")
@@ -392,10 +392,10 @@
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
 
-	//8 - JAVASCRIPT
+	//#8 - PHP
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		tagExtent = d3.extent(codeData, function(d) {return +d.javascript; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.php; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
 		var xAxis = d3.axisBottom(xScale);
@@ -420,16 +420,16 @@
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.javascript);
+	            return yScale(d.php);
 	    });
 
         svg9.append("path")
 	        .attr("d", lineFunction(codeData))
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
-	        .style("fill", "none");		
+	        .style("fill", "none");	
 
-	//9 - Python
+	//9 - PYTHON
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
 		tagExtent = d3.extent(codeData, function(d) {return +d.python; });
