@@ -61,11 +61,15 @@
 
 	function update(dataset){
 		
+<<<<<<< HEAD
 
 
 		var xScale = d3.scaleTime()
 			.domain([new Date("2008-07-01"), new Date("2017-01-29")])
 			.range([50, 370]);
+=======
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+>>>>>>> origin/master
 
 		var xAxis = d3.axisBottom(xScale);
 		svg.append("g")
@@ -80,6 +84,7 @@
 			.range([270,30]);
 
 		var yAxis = d3.axisLeft(yScale);
+<<<<<<< HEAD
 		svg.append("g")
 			.attr("class", "axis")
 			.attr("transform","translate(50,0)")
@@ -87,6 +92,9 @@
 
 		svg.append("circle")
 			.attr()
+=======
+		svg.append("g").attr("transform","translate(50,0)").call(yAxis);
+>>>>>>> origin/master
 
         var lineFunction = d3.line()
         .x(function (d) {
@@ -103,10 +111,51 @@
         .style("fill", "none");
         
 	}	
-
-
 </script>
 
+<p id="p2"> 
+	Javascript <br> <br>
+	<svg id="svg_smallMultiples" width="400" height="300">
+	</svg>
+</p><br><br>
+
+<script>
+	var maxMonthNum;
+	var maxCount;
+	var monthNumExtent;
+	var format;
+	var codeSet = [];
+	var svg2 = d3.select("#svg_smallMultiples");
+
+	d3.csv("javascript.csv", function(data) {
+		codeSet = data;
+		monthNumExtent = d3.extent(codeSet, function(d) 
+			{return +d.MonthNum; });
+		tagExtent = d3.extent(codeSet, function(d) 
+			{return +d.javascript; });
+
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+
+		var xAxis = d3.axisBottom(xScale);
+		svg2.append("g").attr("transform", "translate(0,270)").call(xAxis);
+		var yAxis = d3.axisLeft(yScale);
+		svg2.append("g").attr("transform","translate(50,0)").call(yAxis);
+
+		var lineFunction = d3.line()
+        	.x(function (d) {
+	            return xScale(new Date(d.Year, d.Month));
+	        })
+	        .y(function (d) {
+	            return yScale(d.javascript);
+	        });
+	    svg2.append("path")
+	        .attr("d", lineFunction(codeSet))
+	        .style("stroke-width", 2)
+	        .style("stroke", "rgb(6,120,155)")
+	        .style("fill", "none");
+		});
+</script>
 
 </body>
 </html>
