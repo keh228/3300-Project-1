@@ -193,11 +193,21 @@
 	            return yScale(d.android);
 	    });
 
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.android); });
+
         svg2.append("path")
 	        .attr("d", lineFunction(codeData))
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
+
+	    svg2.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);			
 
 	//#2 - ANGULAR JS
 		codeData = data;
@@ -236,11 +246,21 @@
 	            return yScale(d.angularjs);
 	    });
 
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.angularjs); });
+
         svg3.append("path")
 	        .attr("d", lineFunction(codeData))
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
-	        .style("fill", "none");					
+	        .style("fill", "none");		
+
+	    svg3.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);					
 
 	//#3 - CSS
 		codeData = data;
@@ -280,11 +300,21 @@
 	            return yScale(d.css);
 	    });
 
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.css); });
+
         svg4.append("path")
 	        .attr("d", lineFunction(codeData))
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
+
+	    svg4.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);		
 
 	//#4 - IOS
 		codeData = data;
@@ -324,11 +354,21 @@
 	            return yScale(d.ios);
 	    });
 
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.ios); });
+
         svg5.append("path")
 	        .attr("d", lineFunction(codeData))
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
+
+	    svg5.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);	
 
 	//#5 - IPHONE
 		codeData = data;
@@ -368,11 +408,21 @@
 	            return yScale(d.iphone);
 	    });
 
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.iphone); });
+
         svg6.append("path")
 	        .attr("d", lineFunction(codeData))
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
+
+	    svg6.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);
 
 	//#6 - JAVA
 		codeData = data;
@@ -412,11 +462,21 @@
 	            return yScale(d.java);
 	    });
 
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.java); });
+
         svg7.append("path")
 	        .attr("d", lineFunction(codeData))
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
+
+	    svg7.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);	
 
 	//#7 - JAVASCRIPT
 		codeData = data;
@@ -456,11 +516,21 @@
 	            return yScale(d.javascript);
 	    });
 
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.javascript); });
+
         svg8.append("path")
 	        .attr("d", lineFunction(codeData))
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
 	        .style("fill", "none");		
+
+	    svg8.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);
 
 	//#8 - PHP
 		codeData = data;
@@ -500,11 +570,21 @@
 	            return yScale(d.php);
 	    });
 
+	    var area = d3.area()
+		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .y0(180)
+		    .y1(function(d) { return yScale(d.php); });
+
         svg9.append("path")
 	        .attr("d", lineFunction(codeData))
 	        .style("stroke-width", 2)
 	        .style("stroke", "#F48024")
-	        .style("fill", "none");	
+	        .style("fill", "none");		
+
+	    svg9.append("path")
+	         .data([data])
+	         .attr("class", "area")
+	         .attr("d", area);
 
 	//#9 - PYTHON
 		codeData = data;
