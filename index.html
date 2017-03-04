@@ -54,22 +54,15 @@
 			{return +d.MonthNum; });
 		countExtent = d3.extent(dataset, function(d) 
 			{return +d.Count; });
-
+		
 		update(dataset);
-
 	});
 
 	function update(dataset){
-		
-<<<<<<< HEAD
-
-
 		var xScale = d3.scaleTime()
 			.domain([new Date("2008-07-01"), new Date("2017-01-29")])
 			.range([50, 370]);
-=======
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
->>>>>>> origin/master
 
 		var xAxis = d3.axisBottom(xScale);
 		svg.append("g")
@@ -84,17 +77,14 @@
 			.range([270,30]);
 
 		var yAxis = d3.axisLeft(yScale);
-<<<<<<< HEAD
+
 		svg.append("g")
 			.attr("class", "axis")
 			.attr("transform","translate(50,0)")
 			.call(yAxis);
 
 		svg.append("circle")
-			.attr()
-=======
 		svg.append("g").attr("transform","translate(50,0)").call(yAxis);
->>>>>>> origin/master
 
         var lineFunction = d3.line()
         .x(function (d) {
@@ -109,37 +99,57 @@
         .style("stroke-width", 2)
         .style("stroke", "#F48024")
         .style("fill", "none");
-        
 	}	
 </script>
 
 <p id="p2"> 
 	Javascript <br> <br>
-	<svg id="svg_smallMultiples" width="400" height="300">
+	<svg id="svg_smallMultiples1" width="400" height="300">
+	<svg id="svg_smallMultiples2" width="400" height="300">
+	<svg id="svg_smallMultiples3" width="400" height="300">
+	<svg id="svg_smallMultiples4" width="400" height="300">
+	<svg id="svg_smallMultiples5" width="400" height="300">
+	<svg id="svg_smallMultiples6" width="400" height="300">
+	<svg id="svg_smallMultiples7" width="400" height="300">
+	<svg id="svg_smallMultiples8" width="400" height="300">
+	<svg id="svg_smallMultiples9" width="400" height="300">
 	</svg>
 </p><br><br>
 
 <script>
-	var maxMonthNum;
-	var maxCount;
 	var monthNumExtent;
-	var format;
-	var codeSet = [];
-	var svg2 = d3.select("#svg_smallMultiples");
+	var codeData = [];
+	var svg2 = d3.select("#svg_smallMultiples1");
+	var svg3 = d3.select("#svg_smallMultiples2");
+	var svg4 = d3.select("#svg_smallMultiples3");
+	var svg5 = d3.select("#svg_smallMultiples4");
+	var svg6 = d3.select("#svg_smallMultiples5");
+	var svg7 = d3.select("#svg_smallMultiples6");
+	var svg8 = d3.select("#svg_smallMultiples7");
+	var svg9 = d3.select("#svg_smallMultiples8");
+	var svg10 = d3.select("#svg_smallMultiples9");
 
-	d3.csv("javascript.csv", function(data) {
-		codeSet = data;
-		monthNumExtent = d3.extent(codeSet, function(d) 
-			{return +d.MonthNum; });
-		tagExtent = d3.extent(codeSet, function(d) 
-			{return +d.javascript; });
-
+	d3.csv("top9data/javascript.csv", function(data) {
+		codeData = data;
+		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
-		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
-
 		var xAxis = d3.axisBottom(xScale);
-		svg2.append("g").attr("transform", "translate(0,270)").call(xAxis);
+		svg2.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0,270)")
+			.style("font-size", "10px")
+			.call(xAxis);
+
+		var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
 		var yAxis = d3.axisLeft(yScale);
+		svg2.append("g")
+			.attr("class", "axis")
+			.attr("transform","translate(50,0)")
+			.call(yAxis);
+
+		svg2.append("circle")
 		svg2.append("g").attr("transform","translate(50,0)").call(yAxis);
 
 		var lineFunction = d3.line()
@@ -147,14 +157,55 @@
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.javascript);
-	        });
-	    svg2.append("path")
-	        .attr("d", lineFunction(codeSet))
+	            return yScale(d.Tags);
+	    });
+
+        svg2.append("path")
+	        .attr("d", lineFunction(codeData))
 	        .style("stroke-width", 2)
-	        .style("stroke", "rgb(6,120,155)")
-	        .style("fill", "none");
-		});
+	        .style("stroke", "#F48024")
+	        .style("fill", "none");		
+    });
+
+//Me trying to recreate the graphs
+
+  //   d3.csv("top9data/css.csv", function(data) {
+		// codeData = data;
+		// monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.Tags; });
+		
+		// var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([50, 370]);
+		// var xAxis = d3.axisBottom(xScale);
+		// svg3.append("g")
+		// 	.attr("class", "axis")
+		// 	.attr("transform", "translate(0,270)")
+		// 	.style("font-size", "10px")
+		// 	.call(xAxis);
+
+		// var yScale = d3.scaleLinear().domain(tagExtent).range([270,30]);
+		// var yAxis = d3.axisLeft(yScale);
+		// svg3.append("g")
+		// 	.attr("class", "axis")
+		// 	.attr("transform","translate(50,0)")
+		// 	.call(yAxis);
+
+		// svg3.append("circle")
+		// svg3.append("g").attr("transform","translate(50,0)").call(yAxis);
+
+		// var lineFunction = d3.line()
+  //       	.x(function (d) {
+	 //            return xScale(new Date(d.Year, d.Month));
+	 //        })
+	 //        .y(function (d) {
+	 //            return yScale(d.Tags);
+	 //    });
+
+  //       svg3.append("path")
+	 //        .attr("d", lineFunction(codeData))
+	 //        .style("stroke-width", 2)
+	 //        .style("stroke", "#F48024")
+	 //        .style("fill", "none");		
+  //   });
 </script>
 
 </body>
