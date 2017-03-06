@@ -22,6 +22,9 @@
 		.axis line{
 			stroke: #BCBBBB;
 		}
+		.tick {
+			opacity: 1;
+		}
 		.axis path{
 			stroke: #BCBBBB;
 		}
@@ -85,6 +88,8 @@
 			.range([270,30]);
 
 		var yAxis = d3.axisLeft(yScale);
+		yAxis.tickValues(d3.range(0, 600000, 100000));
+
 
 		svg.append("g")
 			.attr("class", "axis")
@@ -1447,6 +1452,8 @@
 	         .attr("d", area);
     });
 </script>
+
+
 
 </body>
 </html>
