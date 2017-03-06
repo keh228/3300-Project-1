@@ -41,6 +41,7 @@ svg text {
 #bg2 p, 
 #bg1 p {
 	text-align: center;
+	line-height: 150%;
 	width: 60%;
 	margin-left: auto;
 	margin-right: auto;
