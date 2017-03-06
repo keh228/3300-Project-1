@@ -259,7 +259,7 @@
 	var svg9 = d3.select("#svg_smallMultiples8");
 	var svg10 = d3.select("#svg_smallMultiples9");
 
-	d3.csv("dataTop2016.csv", function(data) {
+	d3.csv("dataTop2016B.csv", function(data) {
 	
 	//find largest tag for scale
 		var tagExtent;
@@ -299,14 +299,14 @@
 
 		var lineFunction = d3.line()
         	.x(function (d) {
-	            return xScale(new Date(d.Year, d.Month));
+	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
 	            return yScale(d.android);
 	    });
 
 	    var area = d3.area()
-		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
 		    .y1(function(d) { return yScale(d.android); });
 
@@ -352,14 +352,14 @@
 
 		var lineFunction = d3.line()
         	.x(function (d) {
-	            return xScale(new Date(d.Year, d.Month));
+	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
 	            return yScale(d.Csharp);
 	    });
 
 	    var area = d3.area()
-		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
 		    .y1(function(d) { return yScale(d.Csharp); });
 
@@ -406,14 +406,14 @@
 
 		var lineFunction = d3.line()
         	.x(function (d) {
-	            return xScale(new Date(d.Year, d.Month));
+	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
 	            return yScale(d.html);
 	    });
 
 	    var area = d3.area()
-		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
 		    .y1(function(d) { return yScale(d.html); });
 
@@ -460,14 +460,14 @@
 
 		var lineFunction = d3.line()
         	.x(function (d) {
-	            return xScale(new Date(d.Year, d.Month));
+	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
 	            return yScale(d.ios);
 	    });
 
 	    var area = d3.area()
-		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
 		    .y1(function(d) { return yScale(d.ios); });
 
@@ -514,14 +514,14 @@
 
 		var lineFunction = d3.line()
         	.x(function (d) {
-	            return xScale(new Date(d.Year, d.Month));
+	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
 	            return yScale(d.java);
 	    });
 
 	    var area = d3.area()
-		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
 		    .y1(function(d) { return yScale(d.java); });
 
@@ -568,14 +568,14 @@
 
 		var lineFunction = d3.line()
         	.x(function (d) {
-	            return xScale(new Date(d.Year, d.Month));
+	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
 	            return yScale(d.javascript);
 	    });
 
 	    var area = d3.area()
-		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
 		    .y1(function(d) { return yScale(d.javascript); });
 
@@ -622,14 +622,14 @@
 
 		var lineFunction = d3.line()
         	.x(function (d) {
-	            return xScale(new Date(d.Year, d.Month));
+	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
 	            return yScale(d.jquery);
 	    });
 
 	    var area = d3.area()
-		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
 		    .y1(function(d) { return yScale(d.jquery); });
 
@@ -676,14 +676,14 @@
 
 		var lineFunction = d3.line()
         	.x(function (d) {
-	            return xScale(new Date(d.Year, d.Month));
+	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
 	            return yScale(d.php);
 	    });
 
 	    var area = d3.area()
-		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
 		    .y1(function(d) { return yScale(d.php); });
 
@@ -730,14 +730,14 @@
 
 		var lineFunction = d3.line()
         	.x(function (d) {
-	            return xScale(new Date(d.Year, d.Month));
+	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
 	            return yScale(d.python);
 	    });
 
 	    var area = d3.area()
-		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
+		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
 		    .y1(function(d) { return yScale(d.python); });
 
@@ -780,7 +780,8 @@
 	//var color = d3.scaleOrdinal(d3.schemeCategory10);
 	var color2 = d3.scaleOrdinal().range(["#F48024", "#44af69", "#f8333c", "#0077CC", "#dbd5b5", "#5BC0EB", "#FDE74C", "#403233", "#9BC53D"]);
 
-
+	var keys2 ;
+	var graph2 ;
 	var xAx2 = d3.axisBottom()
 	    .scale(x2);
 
@@ -806,7 +807,7 @@
 
 	d3.csv('dataTop2016B.csv', function(error, data2016) {
 	  //color.domain(d3.keys(data[0]).filter(function(key) { return key !== 'date'; }));
-	  var keys2 = data2016.columns.filter(function(key) { return key !== 'date'; })
+	  keys2 = data2016.columns.filter(function(key) { return key !== 'date'; })
 	  data2016.forEach(function(d) {
 	    d.date = parseDate(d.date); 
 	  });
@@ -824,12 +825,12 @@
 
 	  stack2.keys(keys2);
 
-	  //stack.order(d3.stackOrderNone);
-	  ///stack.offset(d3.stackOffsetNone);
+	  //stack2.order(d3.stackOrderNone);
+	  //stack2.offset(d3.stackOffsetNone);
 
 	  console.log(stack(data2016));
 
-	  var graph2 = svgB2.selectAll('.graph')
+	  graph2 = svgB2.selectAll('.graph')
 	      .data(stack(data2016))
 	    .enter().append('g')
 	      .attr('class', function(d){ return 'graph ' + d.key; })
