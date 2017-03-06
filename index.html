@@ -768,7 +768,7 @@
 	//var formatSi = d3.format(".3s");
 
 	var formatNumber2 = d3.format(".1s"),
-	    formatThousand2 = function(x) { return formatNumber(x); };
+	    formatThousand2 = function(x) { return formatNumber2(x); };
 
 
 	var x2 = d3.scaleTime()
@@ -809,7 +809,7 @@
 	  //color.domain(d3.keys(data[0]).filter(function(key) { return key !== 'date'; }));
 	  keys2 = data2016.columns.filter(function(key) { return key !== 'date'; })
 	  data2016.forEach(function(d) {
-	    d.date = parseDate(d.date); 
+	    d.date = parseDate2(d.date); 
 	  });
 
 
@@ -828,10 +828,10 @@
 	  //stack2.order(d3.stackOrderNone);
 	  //stack2.offset(d3.stackOffsetNone);
 
-	  console.log(stack(data2016));
+	  console.log(stack2(data2016));
 
 	  graph2 = svgB2.selectAll('.graph')
-	      .data(stack(data2016))
+	      .data(stack2(data2016))
 	    .enter().append('g')
 	      .attr('class', function(d){ return 'graph ' + d.key; })
 	      .attr('fill-opacity', 0.5);
@@ -839,7 +839,7 @@
 	  graph2.append('path')
 	      .attr('class', 'area')
 	      .attr('d', area2)
-	      .style('fill', function(d) { return color(d.key); });
+	      .style('fill', function(d) { return color2(d.key); });
 	      
 	  graph2.append('text')
 	      .datum(function(d) { return d; })
