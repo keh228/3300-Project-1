@@ -1,3 +1,18 @@
+body { font-family: 'Alegreya Sans', Calibri, sans-serif; }
+svg { border: solid #ccc 2px; }
+svg text {
+	fill: #BCBBBB;
+}
+.axis line{
+	stroke: #BCBBBB;
+}
+.tick {
+	opacity: 1;
+}
+.axis path{
+	stroke: #BCBBBB;
+}
+
 #header {
 	margin-top: 2em;
 	margin-bottom: 1em;
@@ -19,6 +34,48 @@
 	text-align: center;
 }
 
+#bg2 h1, 
+#bg1 h1 {
+	text-align: center;
+}
+#bg2 p, 
+#bg1 p {
+	text-align: center;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+#bg2 .content,
+#bg1 .content {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1em;
+	width: 55%;
+}
+#bigGraph2Legend,
+#bigGraph1Legend {
+	display: inline-block;
+	margin-right: auto;
+	margin-left: auto;
+}
+#bigGraph2Legend svg,
+#bigGraph1Legend svg {
+	border: none;
+}
+#bigGraph2,
+#bigGraph1 {
+	display: inline-block;
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+}
+#bigGraph2 svg,
+#bigGraph1 svg {
+	display:inline-block;
+	margin-right: auto;
+	margin-left: auto;
+}
+
 #p1,
 #p2, 
 #p3 {
@@ -26,7 +83,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 5em;
-	max-width: 71%;
+	max-width: 75%;
 }
 #p1 svg {
 	display: block;
