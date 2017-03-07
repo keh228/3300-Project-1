@@ -1,19 +1,31 @@
 body { font-family: 'Alegreya Sans', Calibri, sans-serif; }
-svg { border: solid #ccc 2px; }
+/*svg { border: solid #ccc 2px; }*/
 svg text {
 	fill: #BCBBBB;
 }
-.axis line{
+
+.axis line, 
+.yAxis line,
+.xAxis line{
 	stroke: #BCBBBB;
 }
 .tick {
 	opacity: 1;
 }
-.axis path{
+.axis path,
+.yAxis path, 
+.xAxis path{
 	stroke: #BCBBBB;
 }
-.StackOverflow {
+.graph1XAxis line {
+	opacity: 0;
+}
+.OrangeText {
 	color:#F48024;
+}
+
+.BlueText{
+	color:#0077CC;
 }
 
 #header {

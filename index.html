@@ -7,6 +7,9 @@
 	<script src="https://d3js.org/d3-time.v1.min.js"></script>
 	<script src="https://d3js.org/d3-time-format.v2.min.js"></script>
 	<script type="text/javascript" src="d3-legend.min.js"></script>
+	<script type="text/javascript" src="d3-annotation.min.js"></script>
+
+
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
 
@@ -17,7 +20,7 @@
 <!--  Blue - #0077CC  -->
 <!--  Grey - #BCBBBB  -->
 <div id="header">
-	<h1>Visualizing <span class="StackOverflow">StackOverflow</span></h1>
+	<h1><span class="BlueText">Visualizing</span> <span class="OrangeText">StackOverflow</span></h1>
 	<div id="names">
 		<h3>Eliot Huang, keh228</h3>
 		<h3>Harley Mueller, hrm58</h3>
@@ -26,8 +29,9 @@
 </div>
 
 
+<!--# of tagged questions per month on stackoverflow-->
 <div id="p1"> 
-	<svg id="svg_numquestions" width="400" height="300"></svg>
+	<svg id="svg_numquestions" width="500" height="400"></svg>
 </div>
 
 <script>
@@ -52,39 +56,48 @@
 	function update(dataset){
 		var xScale = d3.scaleTime()
 			.domain([new Date("2008-07-01"), new Date("2017-01-29")])
-			.range([50, 370]);
-		var xScale = d3.scaleTime()
-			.domain([new Date("2008-07-01"), new Date("2017-01-29")])
-			.range([50, 370]);
+			.range([0, 430]);
 
-		var xAxis = d3.axisBottom(xScale);
+		var xAxis = d3.axisBottom(xScale)
+		.tickSize(0);
 		svg.append("g")
-			.attr("class", "axis")
-			.attr("transform", "translate(0,270)")
+			.attr("class", "xAxis")
+			.attr("transform", "translate(0,370)")
 			.style("font-size", "10px")
+			//.attr("class", )
 			//.style("fill", "#BCBBBB")
 			.call(xAxis);
 
+		svg.selectAll(".xAxis text")
+			.attr("transform", "translate(0,5)");
+		
+
 		var yScale = d3.scaleLinear()
 			.domain(countExtent)
-			.range([270,30]);
+			.range([370,80]);
 
-		var yAxis = d3.axisLeft(yScale);
+		var yAxis = d3.axisRight(yScale)
+			.tickSize(-500);
+			
 		yAxis.tickValues(d3.range(0, 600000, 100000));
 
+		//var max = d3.max(data, function(d) {return d.value;} );
+		svg.append("circle");
 
 		svg.append("g")
-			.attr("class", "axis")
-			.attr("transform","translate(50,0)")
+			.attr("class", "yAxis")
+			.style("opacity", 1)
+			.attr("transform","translate(450,0)")
 			.call(yAxis);
-
-		svg.append("text")
-	        .attr("x", (400 / 2))             
-	        .attr("y", 20)
-	        .attr("text-anchor", "middle")  
-	        .style("font-size", "16px") 
-	        .style("text-decoration", "underline")  
-	        .text("# of Tagged Questions per Month on StackOverflow");
+		svg.selectAll(".yAxis path")
+			.attr("opacity", 0);
+		// svg.append("text")
+	 //        .attr("x", (500 / 2))             
+	 //        .attr("y", 20)
+	 //        .attr("text-anchor", "middle")  
+	 //        .style("font-size", "16px") 
+	 //        .style("text-decoration", "underline")  
+	 //        .text("# of Tagged Questions per Month on StackOverflow");
 
         var lineFunction = d3.line()
         .x(function (d) {
@@ -96,25 +109,83 @@
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
-		    .y0(270)
+		    .y0(370)
 		    .y1(function(d) { return yScale(d.Count); 
 		});
 
         svg.append("path")
         .attr("d", lineFunction(dataset))
-        .style("stroke-width", 2)
+        .style("stroke-width", 3)
         .style("stroke", "#F48024")
         .style("fill", "none");
 
-	    svg.append("path")
-	         .data([dataset])
-	         .attr("class", "area")
-	         .attr("d", area);	
+	    // svg.append("path")
+	    //      .data([dataset])
+	    //      .attr("class", "area")
+	    //      .attr("d", area);	
+
+	    //peak tags per month
+		svg.append("circle")
+			.attr("cx", xScale(new Date("2014-04-01")))
+			.attr("cy", yScale( countExtent[1] ))
+			.attr("fill", "#0077CC")
+			.attr("r", 4);
+
+		svg.append("line")
+			.attr("x1", xScale(new Date("2014-04-01")))
+			.attr("y1", yScale( countExtent[1] ))
+			.attr("x2", 160)
+			.attr("y2", 120)
+			.attr("stroke-width", 2)
+			.attr("stroke", "#0077CC");
+		svg.append("line")
+			.attr("x1", 50)
+			.attr("y1", 120)
+			.attr("x2", 160)
+			.attr("y2", 120)
+			.attr("stroke-width", 2)
+			.attr("stroke", "#0077CC");
+		svg.append("text")
+	        .attr("x", 50)             
+	        .attr("y", 100)
+	        .style("font-size", "16px") 
+	        .text("Tags per month")
+	        .attr("class","blueText")
+	        .style("fill", "#0077CC");
+	    svg.append("text")
+	        .attr("x", 50)             
+	        .attr("y", 115)
+	        .attr("all", "unset")
+	        .style("font-size", "16px") 
+	        .text("peaked at 535,563")
+	        .style("fill", "#0077CC");
+
+	    //tags per month in Feb 2017
+		svg.append("circle")
+			.attr("cx", xScale(new Date("2017-03-01")))
+			.attr("cy", yScale(430000))
+			.attr("fill", "#0077CC")
+			.attr("r", 4);
+		svg.append("text")
+	        .attr("x", 390)             
+	        .attr("y", 160)
+	        .style("font-size", "16px") 
+	        .text("432,738 in")
+	        .attr("class","blueText")
+	        .style("fill", "#0077CC");
+	    svg.append("text")
+	        .attr("x", 390)             
+	        .attr("y", 175)
+	        .style("font-size", "16px") 
+	        .text("Feb 2017")
+	        .attr("class","blueText")
+	        .style("fill", "#0077CC");
+
 	}	
 </script>
 
 <div id="bg2">
-	<h1>Most popular tags on StackOverflow in 2016</h1>
+	<h1>Most <span class="BlueText">popular</span> tags on <span class="OrangeText">StackOverflow</span> in 2016</h1>
 	<p>The graph below shows the 9 most popular tags in 2016 mapped over time since the
 	inception of StackOverflow (2009). We also include small multiples so that you can see
 	the progression of each tagged language individually.</p>
@@ -785,7 +856,7 @@
 </script>
 
 <div id="bg1">
-	<h1>Most popular tags on StackOverflow in 2009</h1>
+	<h1>Most <span class="BlueText">popular</span> tags on <span class="OrangeText">StackOverflow</span> in 2009</h1>
 	<p>Similarly, this graph below shows the 9 most popular tags in 2009 StackOverflow questions mapped over time each year. Small multiples allow view of the growth/decline of each language individually.</p>
 	<div class = "content">
 		<div id = bigGraph1Legend>
@@ -932,6 +1003,7 @@
 	svgLegend2009.select(".legendOrdinal")
 	  .call(legendOrdinal2009);
 </script>
+
 
 <div id="p3">
 	<svg id="svg_smallMultiples10" width="250" height="200"></svg>
