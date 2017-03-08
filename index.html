@@ -9,8 +9,6 @@
 	<script type="text/javascript" src="d3-legend.min.js"></script>
 	<script type="text/javascript" src="d3-annotation.min.js"></script>
 
-
-
 	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="styles.css">
@@ -361,25 +359,20 @@
 
 	d3.csv("dataTop2016B.csv", function(data) {
 
-	//#1 - ANDROID
+	//#1 - JAVASCRIPT
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
 		tagExtent = d3.extent(codeData, function(d) {return +d.android; });
 		
-		var xScale = d3.scaleTime()
-					   .domain([new Date("2008-07-01"), new Date("2017-01-29")])
-					   .range([30, 240]);
+		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
-
 		svg2.append("g")
 			.attr("class", "axis")
 			.attr("transform", "translate(0,180)")
 			.style("font-size", "8px")
 			.call(xAxis);
 
-		var yScale = d3.scaleLinear()
-					   .domain(tagExtent)
-					   .range([180, 30]);
+		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
 		var yAxis = d3.axisLeft(yScale)
 					  .ticks(4);
 		svg2.append("g")
@@ -394,20 +387,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("Android");
+	        .text("1. JavaScript");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
-	            return yScale(d.android);
+	            return yScale(d.javascript);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.android); });
+		    .y1(function(d) { return yScale(d.javascript); });
 
         svg2.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -418,12 +411,12 @@
 	    svg2.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);			
+	         .attr("d", area);
 
-	//#2 - C#
+	//#2 - JAVA
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.angularjs; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.java; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -440,6 +433,7 @@
 			.attr("class", "axis")
 			.attr("transform","translate(30,0)")
 			.style("font-size", "8px")
+			//change ticks
 			.call(yAxis);
 
 		svg3.append("text")
@@ -448,20 +442,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("C#");
+	        .text("2. Java");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
-	            return yScale(d.Csharp);
+	            return yScale(d.java);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.Csharp); });
+		    .y1(function(d) { return yScale(d.java); });
 
         svg3.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -472,22 +466,27 @@
 	    svg3.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);					
+	         .attr("d", area);	
 
-	//#3 - HTML
+	//#3 - ANDROID
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.css; });
+		tagExtent = d3.extent(codeData, function(d) {return +d.android; });
 		
-		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
+		var xScale = d3.scaleTime()
+					   .domain([new Date("2008-07-01"), new Date("2017-01-29")])
+					   .range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
+
 		svg4.append("g")
 			.attr("class", "axis")
 			.attr("transform", "translate(0,180)")
 			.style("font-size", "8px")
 			.call(xAxis);
 
-		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
+		var yScale = d3.scaleLinear()
+					   .domain(tagExtent)
+					   .range([180, 30]);
 		var yAxis = d3.axisLeft(yScale)
 					  .ticks(4);
 		svg4.append("g")
@@ -502,20 +501,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("HTML");
+	        .text("3. Android");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
-	            return yScale(d.html);
+	            return yScale(d.android);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.html); });
+		    .y1(function(d) { return yScale(d.android); });
 
         svg4.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -526,12 +525,12 @@
 	    svg4.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);		
+	         .attr("d", area);			
 
-	//#4 - IOS
+	//#4 - PHP
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.ios; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.php; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -556,20 +555,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("iOS");
+	        .text("4. PHP");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
-	            return yScale(d.ios);
+	            return yScale(d.php);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.ios); });
+		    .y1(function(d) { return yScale(d.php); });
 
         svg5.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -580,12 +579,12 @@
 	    svg5.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);	
+	         .attr("d", area);
 
-	//#5 - JAVA
+	//#5 - PYTHON
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.java; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.python; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -602,7 +601,6 @@
 			.attr("class", "axis")
 			.attr("transform","translate(30,0)")
 			.style("font-size", "8px")
-			//change ticks
 			.call(yAxis);
 
 		svg6.append("text")
@@ -611,20 +609,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("Java");
+	        .text("5. Python");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
-	            return yScale(d.java);
+	            return yScale(d.python);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.java); });
+		    .y1(function(d) { return yScale(d.python); });
 
         svg6.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -635,12 +633,12 @@
 	    svg6.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);	
+	         .attr("d", area);
 
-	//#6 - JAVASCRIPT
+	//#6 - C#
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.javascript; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.angularjs; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -665,20 +663,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("JavaScript");
+	        .text("6. C#");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
-	            return yScale(d.javascript);
+	            return yScale(d.Csharp);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.javascript); });
+		    .y1(function(d) { return yScale(d.Csharp); });
 
         svg7.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -689,12 +687,12 @@
 	    svg7.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);
+	         .attr("d", area);					
 
-	//#7 - JQUERY
+	//#7 - HTML
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.iphone; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.css; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -719,20 +717,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("jQuery");
+	        .text("7. HTML");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
-	            return yScale(d.jquery);
+	            return yScale(d.html);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.jquery); });
+		    .y1(function(d) { return yScale(d.html); });
 
         svg8.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -743,12 +741,12 @@
 	    svg8.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);
+	         .attr("d", area);		
 
-	//#8 - PHP
+	//#8 - JQUERY
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.php; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.iphone; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -773,20 +771,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("PHP");
+	        .text("8. jQuery");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
-	            return yScale(d.php);
+	            return yScale(d.jquery);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.php); });
+		    .y1(function(d) { return yScale(d.jquery); });
 
         svg9.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -799,10 +797,10 @@
 	         .attr("class", "area")
 	         .attr("d", area);
 
-	//#9 - PYTHON
+	//#9 - IOS
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.python; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.ios; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -827,20 +825,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("Python");
+	        .text("9. iOS");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.date));
 	        })
 	        .y(function (d) {
-	            return yScale(d.python);
+	            return yScale(d.ios);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.date)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.python); });
+		    .y1(function(d) { return yScale(d.ios); });
 
         svg10.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -851,7 +849,8 @@
 	    svg10.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);
+	         .attr("d", area);	
+
     });
 </script>
 
@@ -977,7 +976,6 @@
 <!--big graph 2009 legend javascript-->
 <!--source: http://d3-legend.susielu.com/#color-ordinal -->
 <script>
-
 	var ordinal2009 = d3.scaleOrdinal()
 	  .domain(["iphone", "jquery", "c++", "javascript", "asp.net", "php", ".net", "java", "c#"])
 	  //.range(["#F48024", "#44af69", "#f8333c", "#0077CC", "#dbd5b5", "#5BC0EB", "#FDE74C", "#403233", "#9BC53D"]);
@@ -1003,7 +1001,6 @@
 	svgLegend2009.select(".legendOrdinal")
 	  .call(legendOrdinal2009);
 </script>
-
 
 <div id="p3">
 	<svg id="svg_smallMultiples10" width="250" height="200"></svg>
@@ -1033,11 +1030,10 @@
 
 	d3.csv("dataTop2009.csv", function(data) {
 
-	//#10 - ASP.NET
+	//#10 - C#
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-
-		tagExtent = d3.extent(codeData, function(d) {return +d.java; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.css; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -1048,7 +1044,7 @@
 			.call(xAxis);
 
 		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
-		var yAxis = d3.axisLeft(yScale)
+		var yAxis = d3.axisLeft(yScale);
 		svg11.append("g")
 			.attr("class", "axis")
 			.attr("transform","translate(30,0)")
@@ -1062,20 +1058,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("asp.net");
+	        .text("1. C#");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.aspnet);
+	            return yScale(d.Csharp);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.aspnet); });
+		    .y1(function(d) { return yScale(d.Csharp); });
 
         svg11.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -1086,12 +1082,12 @@
 	    svg11.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);			
+	         .attr("d", area);		
 
-	//#11 - C++
+	//#11 - JAVA
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.angularjs; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.java; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -1115,20 +1111,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("C++");
+	        .text("2. Java");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.Cplusplus);
+	            return yScale(d.java);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.Cplusplus); });
+		    .y1(function(d) { return yScale(d.java); });
 
         svg12.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -1139,12 +1135,12 @@
 	    svg12.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);					
+	         .attr("d", area);	
 
-	//#12 - C#
+	//#12 - .NET
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.css; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.php; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -1169,20 +1165,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("C#");
+	        .text("3. .net");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.Csharp);
+	            return yScale(d.net);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.Csharp); });
+		    .y1(function(d) { return yScale(d.net); });
 
         svg13.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -1193,12 +1189,12 @@
 	    svg13.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);		
+	         .attr("d", area);
 
-	//#13 - iPhone
+	//#13 - PHP
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.ios; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.python; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -1223,20 +1219,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("iPhone");
+	        .text("4. PHP");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.iphone);
+	            return yScale(d.php);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.iphone); });
+		    .y1(function(d) { return yScale(d.php); });
 
         svg14.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -1247,12 +1243,13 @@
 	    svg14.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);	
+	         .attr("d", area);
 
-	//#14 - JAVA
+	//#14 - ASP.NET
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.java; });
+
+		tagExtent = d3.extent(codeData, function(d) {return +d.java; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -1263,11 +1260,12 @@
 			.call(xAxis);
 
 		var yScale = d3.scaleLinear().domain(tagExtent).range([180,30]);
-		var yAxis = d3.axisLeft(yScale);
+		var yAxis = d3.axisLeft(yScale)
 		svg15.append("g")
 			.attr("class", "axis")
 			.attr("transform","translate(30,0)")
 			.style("font-size", "8px")
+			//change ticks
 			.call(yAxis);
 
 		svg15.append("text")
@@ -1276,20 +1274,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("Java");
+	        .text("5. asp.net");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.java);
+	            return yScale(d.aspnet);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.java); });
+		    .y1(function(d) { return yScale(d.aspnet); });
 
         svg15.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -1300,7 +1298,7 @@
 	    svg15.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);	
+	         .attr("d", area);			
 
 	//#15 - JAVASCRIPT
 		codeData = data;
@@ -1330,7 +1328,7 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("JavaScript");
+	        .text("6. JavaScript");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
@@ -1356,10 +1354,10 @@
 	         .attr("class", "area")
 	         .attr("d", area);
 
-	//#16 - JQUERY
+	//#16 - C++
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.iphone; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.angularjs; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -1375,7 +1373,6 @@
 			.attr("class", "axis")
 			.attr("transform","translate(30,0)")
 			.style("font-size", "8px")
-			//change ticks
 			.call(yAxis);
 
 		svg17.append("text")
@@ -1384,20 +1381,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("jQuery");
+	        .text("7. C++");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.jquery);
+	            return yScale(d.Cplusplus);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.jquery); });
+		    .y1(function(d) { return yScale(d.Cplusplus); });
 
         svg17.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -1408,12 +1405,12 @@
 	    svg17.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);
+	         .attr("d", area);					
 
-	//#17 - .NET
+	//#17 - JQUERY
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.php; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.iphone; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -1438,20 +1435,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text(".net");
+	        .text("8. jQuery");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.net);
+	            return yScale(d.jquery);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.net); });
+		    .y1(function(d) { return yScale(d.jquery); });
 
         svg18.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -1464,10 +1461,10 @@
 	         .attr("class", "area")
 	         .attr("d", area);
 
-	//#18 - PHP
+	//#18 - iPhone
 		codeData = data;
 		monthNumExtent = d3.extent(codeData, function(d) {return +d.MonthNum; });
-		// tagExtent = d3.extent(codeData, function(d) {return +d.python; });
+		// tagExtent = d3.extent(codeData, function(d) {return +d.ios; });
 		
 		var xScale = d3.scaleTime().domain([new Date("2008-07-01"), new Date("2017-01-29")]).range([30, 240]);
 		var xAxis = d3.axisBottom(xScale);
@@ -1492,20 +1489,20 @@
 	        .attr("text-anchor", "middle")  
 	        .style("font-size", "16px") 
 	        .style("text-decoration", "underline")  
-	        .text("PHP");
+	        .text("9. iPhone");
 
 		var lineFunction = d3.line()
         	.x(function (d) {
 	            return xScale(new Date(d.Year, d.Month));
 	        })
 	        .y(function (d) {
-	            return yScale(d.php);
+	            return yScale(d.iphone);
 	    });
 
 	    var area = d3.area()
 		    .x(function(d) { return xScale(new Date(d.Year, d.Month)); })
 		    .y0(180)
-		    .y1(function(d) { return yScale(d.php); });
+		    .y1(function(d) { return yScale(d.iphone); });
 
         svg19.append("path")
 	        .attr("d", lineFunction(codeData))
@@ -1516,7 +1513,8 @@
 	    svg19.append("path")
 	         .data([data])
 	         .attr("class", "area")
-	         .attr("d", area);
+	         .attr("d", area);	
+	
     });
 </script>
 
